@@ -1,5 +1,7 @@
 # Helm Chart for Argo Project
 
-base chart : [argoproj/argo-helm][ref1]
+Argo base chart : [argoproj/argo-helm][ref1]  
+MetalLB base chart: [metallb/metallb][ref2]
 
 [ref1]: https://github.com/argoproj/argo-helm/tree/main
+[ref2]: https://github.com/metallb/metallb/tree/main
