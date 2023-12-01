@@ -1,0 +1,29 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: example-svc
+  namespace: my-ingress
+spec:
+  type: ExternalName
+  externalName: lb-nginx.example.svc.cluster.local
+  # service-name.namespace-name.svc.cluster.local
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: custom-ingress
+  namespace: my-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: "nginx"
+  rules:
+    - http:
+        paths:
+          - path: /example
+            pathType: Prefix
+            backend:
+              service:
+                name: example-svc
+                port:
+                  number: 80
