@@ -466,7 +466,7 @@ controller:
     # See https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-nodeport-allocation
     # allocateLoadBalancerNodePorts: true
     # -- Used by cloud providers to connect the resulting `LoadBalancer` to a pre-existing static IP according to https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer
-    loadBalancerIP: ""
+    loadBalancerIP: "192.168.0.222"
     loadBalancerSourceRanges: []
     # -- Used by cloud providers to select a load balancer implementation other than the cloud provider default. https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class
     loadBalancerClass: ""
@@ -619,7 +619,7 @@ controller:
         type: RuntimeDefault
       capabilities:
         drop:
-        - ALL
+          - ALL
       readOnlyRootFilesystem: true
     resources: {}
   admissionWebhooks:
@@ -670,7 +670,7 @@ controller:
           type: RuntimeDefault
         capabilities:
           drop:
-          - ALL
+            - ALL
         readOnlyRootFilesystem: true
       resources: {}
       # limits:
@@ -690,7 +690,7 @@ controller:
           type: RuntimeDefault
         capabilities:
           drop:
-          - ALL
+            - ALL
         readOnlyRootFilesystem: true
       resources: {}
     patch:
