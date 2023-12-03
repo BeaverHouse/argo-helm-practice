@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: huadmin
+  namespace: {{ .Release.Namespace | quote }}
+secrets:
+- name: huadmin-sa
