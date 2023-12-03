@@ -309,7 +309,7 @@ controller:
 
   # -- [Node selector]
   nodeSelector:
-    node-role.kubernetes.io/master: true
+    node-role.kubernetes.io/master: "true"
   # -- [Tolerations] for use with node taints
   tolerations: []
   # -- Assign custom [affinity] rules
@@ -515,7 +515,7 @@ server:
 
   # -- [Node selector]
   nodeSelector:
-    node-role.kubernetes.io/master: true
+    node-role.kubernetes.io/master: "true"
 
   # -- [Tolerations] for use with node taints
   tolerations: []
