@@ -24,7 +24,7 @@ createAggregateRoles: true
 nameOverride:
 
 # -- String to fully override "argo-workflows.fullname" template
-fullnameOverride:
+fullnameOverride: "myargo"
 
 # -- Labels to set on all resources
 commonLabels: {}
@@ -77,7 +77,8 @@ controller:
   # -- Globally limits the rate at which pods are created.
   # This is intended to mitigate flooding of the Kubernetes API server by workflows with a large amount of
   # parallel nodes.
-  resourceRateLimit: {}
+  resourceRateLimit:
+    {}
     # limit: 10
     # burst: 1
 
@@ -189,7 +190,8 @@ controller:
   cronWorkflowWorkers: # 8
   # -- Restricts the Workflows that the controller will process.
   # Only valid for 2.9+
-  workflowRestrictions: {}
+  workflowRestrictions:
+    {}
     # templateReferencing: Strict|Secure
 
   # telemetryConfig controls the path and port for prometheus telemetry. Telemetry is enabled and emitted in the same endpoint
@@ -283,7 +285,8 @@ controller:
     timeoutSeconds: 30
 
   # -- Extra environment variables to provide to the controller container
-  extraEnv: []
+  extraEnv:
+    []
     # - name: FOO
     #   value: "bar"
 
@@ -306,7 +309,7 @@ controller:
 
   # -- [Node selector]
   nodeSelector:
-    kubernetes.io/os: linux
+    node-role.kubernetes.io/master: true
   # -- [Tolerations] for use with node taints
   tolerations: []
   # -- Assign custom [affinity] rules
@@ -356,7 +359,8 @@ controller:
   # -- Configure when workflow controller runs in a different k8s cluster with the workflow workloads,
   # or needs to communicate with the k8s apiserver using an out-of-cluster kubeconfig secret.
   # @default -- `{}` (See [values.yaml])
-  kubeConfig: {}
+  kubeConfig:
+    {}
     # # name of the kubeconfig secret, may not be empty when kubeConfig specified
     # secretName: kubeconfig-secret
     # # key of the kubeconfig secret, may not be empty when kubeConfig specified
@@ -490,7 +494,8 @@ server:
     targetMemoryUtilizationPercentage: 50
     # -- Configures the scaling behavior of the target in both Up and Down directions.
     # This is only available on HPA apiVersion `autoscaling/v2beta2` and newer
-    behavior: {}
+    behavior:
+      {}
       # scaleDown:
       #  stabilizationWindowSeconds: 300
       #  policies:
@@ -510,7 +515,7 @@ server:
 
   # -- [Node selector]
   nodeSelector:
-    kubernetes.io/os: linux
+    node-role.kubernetes.io/master: true
 
   # -- [Tolerations] for use with node taints
   tolerations: []
@@ -536,7 +541,8 @@ server:
   secure: false
 
   # -- Extra environment variables to provide to the argo-server container
-  extraEnv: []
+  extraEnv:
+    []
     # - name: FOO
     #   value: "bar"
 
@@ -582,7 +588,8 @@ server:
     # -- List of ingress hosts
     ## Hostnames must be provided if Ingress is enabled.
     ## Secrets must be manually created in the namespace
-    hosts: []
+    hosts:
+      []
       # - argoworkflows.example.com
 
     # -- List of ingress paths
@@ -592,7 +599,8 @@ server:
     # -- Ingress path type. One of `Exact`, `Prefix` or `ImplementationSpecific`
     pathType: Prefix
     # -- Additional ingress paths
-    extraPaths: []
+    extraPaths:
+      []
       # - path: /*
       #   backend:
       #     serviceName: ssl-redirect
@@ -607,7 +615,8 @@ server:
       #         name: use-annotation
 
     # -- Ingress TLS configuration
-    tls: []
+    tls:
+      []
       # - secretName: argoworkflows-example-tls
       #   hosts:
       #     - argoworkflows.example.com
@@ -632,7 +641,7 @@ server:
     enabled: false
     # -- Domains for the Google Managed Certificate
     domains:
-    - argoworkflows.example.com
+      - argoworkflows.example.com
 
   ## Create a Google FrontendConfig Custom Resource, for use with the GKE Ingress Controller
   ## https://cloud.google.com/kubernetes-engine/docs/how-to/ingress-features#configuring_ingress_features_through_frontendconfig_parameters
@@ -673,15 +682,16 @@ server:
     rbac:
       # -- Adds ServiceAccount Policy to server (Cluster)Role.
       enabled: true
-    # -- Whitelist to allow server to fetch Secrets
-    ## When present, restricts secrets the server can read to a given list.
-    ## You can use it to restrict the server to only be able to access the
-    ## service account token secrets that are associated with service accounts
-    ## used for authorization.
+      # -- Whitelist to allow server to fetch Secrets
+      ## When present, restricts secrets the server can read to a given list.
+      ## You can use it to restrict the server to only be able to access the
+      ## service account token secrets that are associated with service accounts
+      ## used for authorization.
       secretWhitelist: []
     # -- Scopes requested from the SSO ID provider
     ## The 'groups' scope requests group membership information, which is usually used for authorization decisions.
-    scopes: []
+    scopes:
+      []
       # - groups
     # -- Define how long your login is valid for (in hours)
     ## If omitted, defaults to 10h.
@@ -703,7 +713,8 @@ server:
   extraInitContainers: []
 
 # -- Array of extra K8s manifests to deploy
-extraObjects: []
+extraObjects:
+  []
   # - apiVersion: secrets-store.csi.x-k8s.io/v1
   #   kind: SecretProviderClass
   #   metadata:
@@ -735,7 +746,8 @@ artifactRepository:
   archiveLogs: false
   # -- Store artifact in a S3-compliant object store
   # @default -- See [values.yaml]
-  s3: {}
+  s3:
+    {}
     # # Note the `key` attribute is not the actual secret, it's the PATH to
     # # the contents in the associated secret, as defined by the `name` attribute.
     # accessKeySecret:
@@ -803,7 +815,8 @@ customArtifactRepository: {}
 # -- The section of [artifact repository ref](https://argoproj.github.io/argo-workflows/artifact-repository-ref/).
 # Each map key is the name of configmap
 # @default -- `{}` (See [values.yaml])
-artifactRepositoryRef: {}
+artifactRepositoryRef:
+  {}
   # # -- 1st ConfigMap
   # # If you want to use this config map by default, name it "artifact-repositories".
   # # Otherwise, you can provide a reference to a
