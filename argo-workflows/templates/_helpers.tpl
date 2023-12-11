@@ -182,3 +182,9 @@ Return the appropriate apiVersion for GKE resources
 {{- print "cloud.google.com/v1beta1" -}}
 {{- end -}}
 {{- end -}}
+
+{{- define "imagePullSecret" }}
+{{- with .Values.imageCredentials }}
+{{- printf "{\"auths\":{\"%s\":{\"username\":\"%s\",\"password\":\"%s\",\"email\":\"%s\",\"auth\":\"%s\"}}}" .registry .username .password .email (printf "%s:%s" .username .password | b64enc) | b64enc }}
+{{- end }}
+{{- end }}

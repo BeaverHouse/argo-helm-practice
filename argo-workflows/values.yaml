@@ -874,3 +874,9 @@ emissary:
   #    cmd: [/argosay]
   #  docker/whalesay:latest:
   #    cmd: [/bin/bash]
+
+imageCredentials:
+  registry: https://index.docker.io/v1/ # for Docker Hub
+  username: your-name
+  password: your-pw
+  email: your@mail.com
