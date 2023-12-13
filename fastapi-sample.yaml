@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fastapi-test
+  labels:
+    env: test
+spec:
+  containers:
+    - name: fastapi
+      image: haulrest/fastapi-sample:v1
+      imagePullPolicy: Always
+  nodeSelector:
+    kubernetes.io/hostname: k3s-worker-1
