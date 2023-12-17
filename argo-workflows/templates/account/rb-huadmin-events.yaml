@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: huadmin-event-rb
+  namespace: {{ .Release.Namespace | quote }}
+subjects:
+  - kind: ServiceAccount
+    name: huadmin
+roleRef:
+  kind: Role
+  name: event-admin
+  apiGroup: rbac.authorization.k8s.io

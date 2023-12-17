@@ -5,7 +5,7 @@
 # -- Provide a name in place of `argo-events`
 nameOverride: argo-events
 # -- String to fully override "argo-events.fullname" template
-fullnameOverride: ""
+fullnameOverride: "myargo"
 
 # -- Deploy on OpenShift
 openshift: false
