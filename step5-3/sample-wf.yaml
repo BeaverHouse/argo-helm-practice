@@ -8,7 +8,7 @@ spec:
       inputs:
         parameters:
           - name: message
-            value: "it is from Github"
+            value: "now it's changed!!!"
       container:
         image: docker/whalesay
         command: [cowsay]
