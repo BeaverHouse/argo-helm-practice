@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: remote-template-sample
+spec:
+  templates:
+    - name: whalesay
+      inputs:
+        parameters:
+          - name: message
+            value: "it is from Github"
+      container:
+        image: docker/whalesay
+        command: [cowsay]
+        args: ["{{inputs.parameters.message}}"]
