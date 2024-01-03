@@ -5,7 +5,7 @@
 # -- Provide a name in place of `argocd`
 nameOverride: argocd
 # -- String to fully override `"argo-cd.fullname"`
-fullnameOverride: ""
+fullnameOverride: "myargocd"
 # -- Override the Kubernetes version, which is used to evaluate certain manifests
 kubeVersionOverride: ""
 # Override APIVersions
@@ -1833,7 +1833,7 @@ server:
     # -- Server service labels
     labels: {}
     # -- Server service type
-    type: ClusterIP
+    type: LoadBalancer
     # -- Server service http port for NodePort service type (only if `server.service.type` is set to "NodePort")
     nodePortHttp: 30080
     # -- Server service https port for NodePort service type (only if `server.service.type` is set to "NodePort")
@@ -1849,7 +1849,7 @@ server:
     # -- Server service https port appProtocol. (should be upper case - i.e. HTTPS)
     # servicePortHttpsAppProtocol: HTTPS
     # -- LoadBalancer will get created with the IP specified in this field
-    loadBalancerIP: ""
+    loadBalancerIP: "192.168.0.202"
     # -- Source IP ranges to allow access to service from
     loadBalancerSourceRanges: []
     # -- Server service external IPs
